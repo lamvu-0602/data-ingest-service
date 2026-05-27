@@ -22,7 +22,7 @@ jobs:
       - name: Log in to Azure Container Registry
         uses: azure/docker-login@v2
         with:
-          login-server: ${{ vars.ACR_SERVER }}
+          login-server: ${{ secrets.ACR_SERVER }}
           username: ${{ secrets.AZURE_CLIENT_ID }}
           password: ${{ secrets.AZURE_CLIENT_SECRET }}
 
@@ -30,7 +30,7 @@ jobs:
         run: |
           cd data-ingest-service
           
-          ACR_SERVER="${{ vars.ACR_SERVER }}"
+          ACR_SERVER="${{ secrets.ACR_SERVER }}"
           
           IMAGE_SHA="$ACR_SERVER/data-ingest-service:${{ steps.get-sha.outputs.short_sha }}"
           IMAGE_LATEST="$ACR_SERVER/data-ingest-service:latest"
@@ -49,4 +49,4 @@ jobs:
             --name "app-data-ingest-service" \
             --resource-group "rg-rooftop-kms-training" \
             --container-name "data-ingest-service" \
-            --image "${{ vars.ACR_SERVER }}/data-ingest-service:${{ steps.get-sha.outputs.short_sha }}"
+            --image "${{ secrets.ACR_SERVER }}/data-ingest-service:${{ steps.get-sha.outputs.short_sha }}"
