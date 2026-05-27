@@ -28,8 +28,6 @@ jobs:
 
       - name: Build and Push Docker Image
         run: |
-          cd data-ingest-service
-          
           ACR_SERVER="${{ secrets.ACR_SERVER }}"
           
           IMAGE_SHA="$ACR_SERVER/data-ingest-service:${{ steps.get-sha.outputs.short_sha }}"
