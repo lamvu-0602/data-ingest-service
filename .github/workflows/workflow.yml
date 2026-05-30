@@ -47,6 +47,4 @@ jobs:
             --name "app-data-ingest-service" \
             --resource-group "rg-rooftop-kms-training" \
             --container-name "data-ingest-service" \
-            --image "${{ secrets.ACR_SERVER }}/data-ingest-service:${{ steps.get-sha.outputs.short_sha }}" \
-            --revision-mode "single" \
-            --traffic-weight "latest=100"
+            --image "${{ secrets.ACR_SERVER }}/data-ingest-service:${{ steps.get-sha.outputs.short_sha }}"
